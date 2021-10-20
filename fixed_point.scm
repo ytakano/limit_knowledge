@@ -1,12 +1,14 @@
-; let f x = (x x)
-(define f '(lambda (x) (cons x (cons x '()))))
+(define (L x y) (cons x (cons y '())))
 
-; (eval l)
+;; let f x = (x x)
+(define f '(lambda (x) (L x x)))
+
+;; (eval l)
 (define (eval0 l)
-    (eval l '()))
+  (eval l '()))
 
-; 1ステップだけ評価
-; (eval ((car l) (cdr l)))
+;; 1ステップだけ評価
+;; (eval ((car l) (cdr l)))
 (define (eval1 l)
     (apply (eval0 (car l)) (cdr l)))
 
